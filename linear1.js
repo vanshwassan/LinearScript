@@ -1,12 +1,14 @@
 const fetch = require('node-fetch');
+require("dotenv").config();
 
-const linearApiKey = '';
-const issueId = 'TEC-11';
-const newIssueTitle = 'Updated Issue Title';
-const newIssueDescription = 'Updated Issue Description';
+const linearApiKey = process.env.LINEAR_API;
+
+// const issueId = 'TEC-11';
+// const newIssueTitle = 'new Updated Issue Title';
+// const newIssueDescription = 'new Updated Issue Description';
 
 
-async function updateLinearIssuesById() {
+async function updateLinearIssuesById(issueId, newIssueTitle, newIssueDescription) {
   const apiUrl = 'https://api.linear.app/graphql';
 
   const updateQuery = `
@@ -61,10 +63,13 @@ async function updateLinearIssuesById() {
     //   console.log('ID:', MainIssue.id);
     //   console.log('Title:', MainIssue.title);
     //   console.log('Description:', MainIssue.description);
+    return data.data.issue;
 
   } catch (error) {
-    console.error('Failed to update issue:', error);
+    return('Failed to update issue:', error);
   }
 }
 
-updateLinearIssuesById();
+module.exports = {
+  updateLinearIssuesById,
+};
