@@ -10,6 +10,11 @@
       {
         "src": "/(.*)",
         "dest": "index.js"
-      }
+      },
+        {
+            "src": "/update",
+            "methods": ["GET"],
+            "dest": "index.js"
+        }
     ]
   }
